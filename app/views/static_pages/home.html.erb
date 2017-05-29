@@ -1,0 +1,16 @@
+<h1>MyCrawler Top</h1>
+<p>This is the top page of mycrawler.</p>
+
+<%= link_to "探す", search_path, method: :post %><br><br>
+
+<ul>
+  <% @urls.each do |url| %>
+    <li><%= link_to url, url %></li>
+  <% end %>
+</ul>
+<%#= @responces['ResultSet']["0"]["Result"]["0"]["Url"].gsub(/\/\w+\.html\Z/, '/info.html') %>
+<%#= @responces['ResultSet']["0"]["Result"]["_container"] %>
+<!--["totalResultsAvailable", "totalResultsReturned", "firstResultPosition", "0"]-->
+<!--["Result"]-->
+<!--["Request", "Modules", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "_container"]-->
+<!--["Name", "Description", "Headline", "Url", "ReleaseDate", "Availability", "Code", "Condition", "PersonId", "ProductId", "Image", "Review", "Affiliate", "Price", "PriceLabel", "Point", "Shipping", "Category", "CategoryIdPath", "Brands", "JanCode", "Model", "IsbnCode", "Store", "IsAdult", "_attributes"]-->
