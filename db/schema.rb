@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520215530) do
+ActiveRecord::Schema.define(version: 20170606145537) do
 
   create_table "sales", force: :cascade do |t|
     t.string   "site_name"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20170520215530) do
 
   add_index "sales", ["email"], name: "index_sales_on_email"
 
+  create_table "shops", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "password_digest"
@@ -34,18 +42,5 @@ ActiveRecord::Schema.define(version: 20170520215530) do
   end
 
   add_index "users", ["name"], name: "index_users_on_name", unique: true
-
-  create_table "yahoos", force: :cascade do |t|
-    t.string   "site_name"
-    t.string   "url"
-    t.string   "email"
-    t.string   "address"
-    t.string   "phone_number"
-    t.string   "staff_name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "yahoos", ["email"], name: "index_yahoos_on_email"
 
 end

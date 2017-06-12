@@ -1,16 +1,54 @@
 <h1>MyCrawler Top</h1>
 <p>This is the top page of mycrawler.</p>
 
-<%= link_to "探す", search_path, method: :post %><br><br>
+<%#= link_to "探す", search_path, method: :post %><br><br>
 
-<ul>
-  <% @urls.each do |url| %>
-    <li><%= link_to url, url %></li>
-  <% end %>
-</ul>
-<%#= @responces['ResultSet']["0"]["Result"]["0"]["Url"].gsub(/\/\w+\.html\Z/, '/info.html') %>
-<%#= @responces['ResultSet']["0"]["Result"]["_container"] %>
-<!--["totalResultsAvailable", "totalResultsReturned", "firstResultPosition", "0"]-->
-<!--["Result"]-->
-<!--["Request", "Modules", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "_container"]-->
-<!--["Name", "Description", "Headline", "Url", "ReleaseDate", "Availability", "Code", "Condition", "PersonId", "ProductId", "Image", "Review", "Affiliate", "Price", "PriceLabel", "Point", "Shipping", "Category", "CategoryIdPath", "Brands", "JanCode", "Model", "IsbnCode", "Store", "IsAdult", "_attributes"]-->
+<%= form_tag search_path do %>
+  <%= text_field_tag :q, params[:q], required: true %>
+  <%= submit_tag "検索",name: nil, data: { disable_with: "検索中..."} %> 
+<% end %>
+
+
+
+<div id="loader-bg">
+  <div id="loader">
+    <img src="img-loading.gif" width="80" height="80" alt="Now Loading..." />
+    <p>Now Loading...</p>
+  </div>
+</div>
+<div id="wrap">
+  <ul>
+    <% @shops.each do |shop| %>
+      <li><%= shop.name %></li>
+      <li><%= shop.url %></li>
+      <li><%= shop.email %></li>
+    <% end %>
+  </ul>
+</div>
+
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+<script>
+$(function() {
+  var h = $(window).height();
+ 
+  $('#wrap').css('display','none');
+  $('#loader-bg ,#loader').height(h).css('display','block');
+});
+ 
+$(window).load(function () { //全ての読み込みが完了したら実行
+  $('#loader-bg').delay(900).fadeOut(800);
+  $('#loader').delay(600).fadeOut(300);
+  $('#wrap').css('display', 'block');
+});
+ 
+// //10秒たったら強制的にロード画面を非表示
+// $(function(){
+//   setTimeout('stopload()',10000);
+// });
+ 
+// function stopload(){
+//   $('#wrap').css('display','block');
+//   $('#loader-bg').delay(900).fadeOut(800);
+//   $('#loader').delay(600).fadeOut(300);
+// }
+</script>
